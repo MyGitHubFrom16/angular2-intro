@@ -1,0 +1,60 @@
+/**
+ - Angular добавляет елементам уникальные атрибуты:
+    <app ng-version="2.4.0" _nghost-xxx-0="">
+        <header _ngcontent-xxx-0="">
+            <img _ngcontent-xxx-0="" src="img/angular.svg">
+            <h1 _ngcontent-xxx-0="">Angular 2DO</h1> 
+        </header>
+        <main _ngcontent-xxx-0="">
+            <section _ngcontent-xxx-0="" class="todo-list">
+                <div _ngcontent-xxx-0="" class="todo-item">
+                    <button _ngcontent-xxx-0="" class="checkbox icon">
+                        <i _ngcontent-xxx-0="" class="material-icons">check_box_outlline_blank</i>
+                    </button>
+                    <span _ngcontent-xxx-0="" class="title">Изучить Angular 2</span>
+                    <div _ngcontent-xxx-0="" class="actions">
+                        <button _ngcontent-xxx-0="" class="delete icon">
+                            <i _ngcontent-xxx-0="" class="material-icons">delete</i>
+                        </button>
+                    </div>    
+                </div> 
+            </section>    
+        </main>    
+    </app>
+ - и cтилям, тем самым реализуя: 'инкапсуляцию' 'ShadowDOM' 
+    header[_ngcontent-xxx-0]
+    header[_ngcontent-xxx-0]   img[_ngcontent-xxx-0] 
+    header[_ngcontent-xxx-0]   h1[_ngcontent-xxx-0] 
+    main[_ngcontent-xxx-0]
+*/
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #1976D2;
+    height: 56px;
+    min-height: 56px;
+    padding: 0;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.24);
+    color: white;
+}
+
+header img {
+    width: 50px;
+}
+
+header h1 {
+    font-weight: 400;
+    margin: 0 0 0 10px;
+}
+
+main {
+    width: 600px;
+    margin: auto;
+    padding: 2rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}

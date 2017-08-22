@@ -6,6 +6,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';  // Модуль 'Браузера', для приложения, работающего в браузере
 
+import { AppComponent } from './app.component';
+
 /**
  * что бы указать Angular, что этот класс будет основным модулем приложения,
  *  нужно добавить 'анотоцию', анотации добавляются с помощью декораторов.
@@ -16,7 +18,9 @@ import { BrowserModule } from '@angular/platform-browser';  // Модуль 'Б�
  * NgModule() - декоратор  указывает Angular что класс 'AppModule' являеться модулем. 
 */
 @NgModule({
-    imports: [BrowserModule]
+    imports: [BrowserModule],
+    declarations: [AppComponent], // регистрация компонента в модуле приложения
+    bootstrap: [AppComponent]     // для запуска приложения используеться AppComponent
 })
 export class AppModule {
 

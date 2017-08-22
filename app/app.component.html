@@ -1,0 +1,38 @@
+<header>
+    <img src="img/angular.svg" >
+    <h1>{{ title }}</h1> <!-- шаблонные тэги, внутри них все воспринимаеться как выражение
+                              например: 3 + 2 // 5 
+    т.к. текущий шпблон принадлежит компоненту 
+    title будет ссылаться на свойство класса AppComponent -->
+</header>
+
+<main>
+    <section class="todo-list">
+        <div class="todo-item">
+            <button class="checkbox icon">
+                <i class="material-icons">check_box_outlline_blank</i>
+            </button>
+            
+            <span class="title">Изучить Angular 2</span>
+            
+            <div class="actions">
+                <button class="delete icon">
+                    <i class="material-icons">delete</i>
+                </button>
+            </div>    
+        </div>    
+        <div class="todo-item">
+            <button class="checkbox icon">
+                <i class="material-icons">check_box_outlline_blank</i>
+            </button>
+            
+            <span class="title">Написать приложение</span>
+            
+            <div class="actions">
+                <button class="delete icon">
+                    <i class="material-icons">delete</i>
+                </button>
+            </div>    
+        </div>    
+    </section>    
+</main>    
