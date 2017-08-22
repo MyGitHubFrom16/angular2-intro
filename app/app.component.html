@@ -1,22 +1,36 @@
 <header>
     <img src="img/angular.svg" >
-    <h1>{{ title }}</h1> <!-- шаблонные тэги, внутри них все воспринимаеться как выражение
-                              например: 3 + 2 // 5 
-    т.к. текущий шпблон принадлежит компоненту 
-    title будет ссылаться на свойство класса AppComponent -->
+    <h1>{{ title }}</h1> 
+    <!-- шаблонные тэги, внутри них все воспринимаеться как выражение: 3 + 2 // 5 
+            т.к. текущий шаблон принадлежит компоненту, 
+            title будет ссылаться на свойство класса AppComponent -->
 </header>
 
 <main>
     <section class="todo-list" *ngIf="todos.length">
-        <div class="todo-item" [ngClass]="{'completed' : false }" *ngFor="let todo of todos">
-            <button class="checkbox icon">
-                <i class="material-icons">check_box_outlline_blank</i>
+        <div class="todo-item" *ngFor="let todo of todos" 
+            [class.completed]="todo.completed">
+            <!-- ^ привязка к определенному классу DOM елемента напрямую: для нескольких классов -->
+            <!-- привязка к классу с помощью диррекивы: для одного класса -->
+            <!-- [ngClass]="{'completed' : todo.completed }"> -->
+
+            <button class="checkbox icon" (click)="toggle(todo)"> <!-- Event Binding -->
+
+                <!-- !^ <i *ngIf="!todo.completed" class="material-icons">check_box_outline_blank</i>
+                        <i *ngIf="todo.completed" class="material-icons">check_box</i> -->
+
+                <!-- Template expression - вместо *ngIf -->
+                <!-- <i class="material-icons">{{ todo.completed ? 'check_box' : 'check_box_outline_blank' }}</i> -->
+
+                <!-- Property Binding -->
+                <i class="material-icons" [innerText]="todo.completed ? 'check_box' : 'check_box_outline_blank'"></i>
+
             </button>
             
-            <span class="title">{{ todo }}</span>
+            <span class="title">{{ todo.title }}</span>
             
             <div class="actions">
-                <button class="delete icon">
+                <button class="delete icon" (click)="delete(todo)"> <!-- Event Binding -->
                     <i class="material-icons">delete</i>
                 </button>
             </div>    

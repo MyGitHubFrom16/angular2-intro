@@ -16,13 +16,46 @@
  * 
  *   атрибутные: - предназначены для изменения внешнего вида или поведения DOM елементов, не создают и не удаляют елементы
  *    [ngClass]="" отображает класс в зависимости от результата выражения
+ * 
+ * ...
+ * 
+ *  Привязка данных
+ * ^ - в Angular 2 есть две разновидности привязки данных: привязка свойств и привязка событий, шаблонные теги{{интерполяция}} - 
+ *      являеться упрощенным вариантом привязки к текстовому содержанию елемента, т.к. привяке к свойству: [innerText]=""
+ * 
+ *      {{ Template expression }}
+ *          - Angular выполняет выражение и присваивает его свойству объекта привязки; 
+ *          Целью может быть HTML-элемент, компонент или директива.
+ * 
+ *      Property Binding 
+ *          - привязка свойства, можно привязаться к ЛЮБОМУ свойству DOM елемента
+ *          у каждого DOM елемента есть набор свойств, пример: в this HTML
+ *          [innerText]="properties || expression"
+ * 
+ *      Event Binding 
+ *          - привязка событий, можно привязаться к ЛЮБОМУ событию DOM елемента
+ *          у каждого DOM елемента есть набор событий.
+ *          в Angular 2 у таких событий как: onclick, onkeyup, onmousemove и др.
+ *          в названии отброшен префикс on : click, keyup, mousemove ...
+ *          пример: в this HTML
+ *          (innerText)="method($event || properties)" в качестве аргумента 
+ *                               Template переменная ссылающаяся на нужный объект
  */
 import { Component } from "@angular/core";
 
 const todos = [
-    'Изучить JavaScript',
-    'Изучить Angullar 2',
-    'Написать приложение'
+    {
+        title: 'Изучить JavaScript',
+        completed: true
+    },
+    {
+        title: 'Изучить Angullar 2',
+        completed: false
+    },
+    {
+        title: 'Написать приложение',
+        completed: false
+    }
 ];
 
 @Component({
@@ -34,4 +67,16 @@ const todos = [
 export class AppComponent {
     title = 'Angular 2DO'; // таким образом, добавлять свойства классу можно только в TypeScript
     todos = todos;
+
+    toggle(todo: any) {
+        todo.completed = !todo.completed; // четко :)
+    }
+
+    delete(todo: any) {
+        let index = this.todos.indexOf(todo);
+
+        if (index > -1) {
+            this.todos.splice(index, 1);
+        }
+    }
 }
