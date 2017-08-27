@@ -40,15 +40,22 @@
  *          пример: в this HTML
  *          (innerText)="method($event || properties)" в качестве аргумента 
  *                               Template переменная ссылающаяся на нужный объект
+ * 
+ *      [(ngModel)]="" - с двустороняя привязка данных, привязка к свойству [] + к событию ()
+ * 
+ * ...
+ *
+ *  Template Reference Variable  - шаблонная переменная
+ *   <input type="text" #titleInput> - переменная titleInput, будет доступна в пределах шаблона компонента
  */
 import { Component } from "@angular/core";
 
-interface ITodo {
-    title: string; 
-    completed: boolean;
+class Todo {
+    constructor(public title: string, 
+                public completed: boolean = false) {};
 };
 
-const todos: ITodo[] = [
+const todos: Todo[] = [
     {
         title: 'Изучить JavaScript',
         completed: true
@@ -71,13 +78,47 @@ const todos: ITodo[] = [
 })
 export class AppComponent {
     title: string = 'Angular 2DO'; // таким образом, добавлять свойства классу можно только в TypeScript
-    todos: ITodo[] = todos;
+    todos: Todo[] = todos;
+    // # Сброс значения инпута #3 
+    /**
+     * идеальным бы выриантом было бы, в классе иметь свойство для названия новой задачи,
+     *  и в шаблоне привязать значение поля к этому свойству.
+     *  таким образом, при обновлении значения поля - значение свойства так же обновляеться.
+     *  далее, после добавления задачи в массив, свойству в классе присваиваем пустую строку,
+     *  и как следствие - это отображаеться на странице
+     *  все это сделать поможет модуль для работы с формами
+     */
+    newTodoTitle: string = '';
+     /**
+      * после импортирования модуля FormsModule, в шаблонах теперь доступно несколько новах дирректив.
+      *  напр: [(ngModel)]="" - с пом. кот. осуществляеться привязка данных
+      */
 
-    toggle(todo: ITodo) {
+
+    
+
+    create() {
+        let todo: Todo = new Todo(this.newTodoTitle);
+        this.todos.push(todo);
+        this.newTodoTitle = '';
+    }
+    /**
+     * create(event: Event, input: HTMLInputElement) {
+     *     event.preventDefault();
+     *     let todo: Todo = new Todo(input);
+     *     this.todos.push(todo);
+     * }
+     * // # Сброс значения инпута #1
+       // input.value = '';
+       //      минусом этого способа являеться тот факт, что мы в классе имеем дело с DOM елементом,
+       //      мешать логику и манипулирование DOM не рекомендуется
+     */
+
+    toggle(todo: Todo) {
         todo.completed = !todo.completed; // четко :)
     }
 
-    delete(todo: ITodo) {
+    delete(todo: Todo) {
         let index = this.todos.indexOf(todo);
 
         if (index > -1) {

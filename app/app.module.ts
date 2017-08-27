@@ -5,6 +5,7 @@
  */
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';  // Модуль 'Браузера', для приложения, работающего в браузере
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 
@@ -18,7 +19,7 @@ import { AppComponent } from './app.component';
  * NgModule() - декоратор  указывает Angular что класс 'AppModule' являеться модулем. 
 */
 @NgModule({
-    imports: [BrowserModule],
+    imports: [BrowserModule, FormsModule],
     declarations: [AppComponent], // регистрация компонента в модуле приложения
     bootstrap: [AppComponent]     // для запуска приложения используеться AppComponent
 })
