@@ -43,7 +43,12 @@
  */
 import { Component } from "@angular/core";
 
-const todos = [
+interface ITodo {
+    title: string; 
+    completed: boolean;
+};
+
+const todos: ITodo[] = [
     {
         title: 'Изучить JavaScript',
         completed: true
@@ -65,14 +70,14 @@ const todos = [
     styleUrls: ['app.component.css']    // styles: `header { background: #232323; }`
 })
 export class AppComponent {
-    title = 'Angular 2DO'; // таким образом, добавлять свойства классу можно только в TypeScript
-    todos = todos;
+    title: string = 'Angular 2DO'; // таким образом, добавлять свойства классу можно только в TypeScript
+    todos: ITodo[] = todos;
 
-    toggle(todo: any) {
+    toggle(todo: ITodo) {
         todo.completed = !todo.completed; // четко :)
     }
 
-    delete(todo: any) {
+    delete(todo: ITodo) {
         let index = this.todos.indexOf(todo);
 
         if (index > -1) {
