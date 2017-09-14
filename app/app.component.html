@@ -7,39 +7,6 @@
 </header>
 
 <main>
-    <!-- <form class="todo-form" (submit)="create($event, titleInput.value); titleInput.value = ''"> -->
-    <!-- # Сброс значения инпута #2 - очистка поля а шаблоне, в данном случае логика в шаблоне, не правильно -->
-    <form class="todo-form" (ngSubmit)="create(); todoForm.reset()" #todoForm="ngForm"><!-- Angular поместит объект формы в #todoForm -->
-        <input type="text" name="title" [(ngModel)]="newTodoTitle" placeholder="Что нужно сделать?" required>
-        <button type="submit" [disabled]="todoForm.form.invalid">Добавить</button>
-    </form>
-    <section class="todo-list" *ngIf="todos.length">
-        <div class="todo-item" *ngFor="let todo of todos" 
-            [class.completed]="todo.completed">
-            <!-- ^ привязка к определенному классу DOM елемента напрямую: для нескольких классов -->
-            <!-- привязка к классу с помощью диррекивы: для одного класса -->
-            <!-- [ngClass]="{'completed' : todo.completed }"> -->
-
-            <button class="checkbox icon" (click)="toggle(todo)"> <!-- Event Binding -->
-
-                <!-- !^ <i *ngIf="!todo.completed" class="material-icons">check_box_outline_blank</i>
-                        <i *ngIf="todo.completed" class="material-icons">check_box</i> -->
-
-                <!-- Template expression - вместо *ngIf -->
-                <!-- <i class="material-icons">{{ todo.completed ? 'check_box' : 'check_box_outline_blank' }}</i> -->
-
-                <!-- Property Binding -->
-                <i class="material-icons" [innerText]="todo.completed ? 'check_box' : 'check_box_outline_blank'"></i>
-
-            </button>
-            
-            <span class="title">{{ todo.title }}</span>
-            
-            <div class="actions">
-                <button class="delete icon" (click)="delete(todo)"> <!-- Event Binding -->
-                    <i class="material-icons">delete</i>
-                </button>
-            </div>    
-        </div>   
-    </section>    
+    <todo-form (add)="create($event)"></todo-form>
+    <todo-list [todos]="todos"></todo-list>    
 </main>    

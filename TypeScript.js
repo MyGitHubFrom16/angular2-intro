@@ -24,4 +24,3 @@
 
     class и interface можно использовать вместе, можно указать что class должен соответствовать какому либо interface
  */ 
-//# sourceMappingURL=TypeScript.js.map

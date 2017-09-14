@@ -8,6 +8,9 @@ import { BrowserModule } from '@angular/platform-browser';  // Модуль 'Б�
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
+import { TodoFormComponent } from './todo-form/todo-form.component';
+import { TodoListComponent } from './todo-list/todo-list.component';
+import { TodoItemComponent } from './todo-item/todo-item.component';
 
 /**
  * что бы указать Angular, что этот класс будет основным модулем приложения,
@@ -19,9 +22,20 @@ import { AppComponent } from './app.component';
  * NgModule() - декоратор  указывает Angular что класс 'AppModule' являеться модулем. 
 */
 @NgModule({
-    imports: [BrowserModule, FormsModule],
-    declarations: [AppComponent], // регистрация компонента в модуле приложения
-    bootstrap: [AppComponent]     // для запуска приложения используеться AppComponent
+    // импортирование модулей в модуле приложения
+    imports: [
+        BrowserModule,
+        FormsModule
+    ],
+    // регистрация компонента в модуле приложения
+    declarations: [
+        AppComponent,
+        TodoFormComponent,
+        TodoListComponent,
+        TodoItemComponent
+    ],
+    // для запуска приложения используеться AppComponent
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 

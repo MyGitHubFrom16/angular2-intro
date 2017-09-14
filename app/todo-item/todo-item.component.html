@@ -1,0 +1,26 @@
+<!-- Property Binding -->
+<div class="todo-item" [class.completed]="todo.completed">
+    <!-- ^ привязка к определенному классу DOM елемента напрямую 'привязка  к свойству': для одного класса  -->
+    <!-- привязка к классу с помощью диррекивы: для нескольких классов -->
+    <!-- [ngClass]="{'completed' : todo.completed }"> -->
+
+    <button class="checkbox icon" (click)="toggle()"> <!-- Event Binding -->
+
+        <!-- !^ <i *ngIf="!todo.completed" class="material-icons">check_box_outline_blank</i>
+                <i *ngIf="todo.completed" class="material-icons">check_box</i> -->
+
+        <!-- Template expression - вместо *ngIf -->
+        <!-- <i class="material-icons">{{ todo.completed ? 'check_box' : 'check_box_outline_blank' }}</i> -->
+
+        <i class="material-icons" [innerText]="todo.completed ? 'check_box' : 'check_box_outline_blank'"></i>
+
+    </button>
+
+    <span class="title">{{ todo.title }}</span>
+
+    <div class="actions">
+        <button class="delete icon" (click)="onDelete()"> <!-- Event Binding -->
+            <i class="material-icons">delete</i>
+        </button>
+    </div>    
+</div>  
