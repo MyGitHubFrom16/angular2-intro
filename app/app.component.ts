@@ -80,10 +80,17 @@
  *  Одним из вариантов разделения ответсвенности между различными частями приложения явл. сервисы
  *      традиционно в сервисы помещаеться логика(т.е. непосредственная работа с данными приложения)
  *    в Angular 2 за внешний вид отвечаеют компоненты а сервисы за работу с данными
+ * 
+ * ... 
+ * #11: Http
+ * AngularInMemoryWebApi
+ *  фэйковый сервер, модуль симулирует работу веб сервера.
+ *  умеет обрабатывать запросы на: полусение, создание, удаление и редактирование
+ *  '' Запись в systemjs.config.js: 'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js'
+ * 
  */
 import { Component } from "@angular/core";
 import { Todo } from "./shared/todo";
-import { todos } from './shared/data';
 
 
 @Component({
