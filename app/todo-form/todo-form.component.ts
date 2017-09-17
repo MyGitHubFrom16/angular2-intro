@@ -1,4 +1,6 @@
-import { Component, Output, EventEmitter } from "@angular/core";
+import { Component } from "@angular/core";
+
+import { TodoService } from '../shared/todo.service';
 
 @Component({
     moduleId: module.id,
@@ -7,8 +9,7 @@ import { Component, Output, EventEmitter } from "@angular/core";
     styleUrls: ['todo-form.component.css']
 })
 export class TodoFormComponent {
-    // # Сброс значения инпута #3 
-    /**
+    /** # Сброс значения инпута #3
      * идеальным бы выриантом было бы, в классе иметь свойство для названия новой задачи,
      *  и в шаблоне привязать значение поля к этому свойству.
      *  таким образом, при обновлении значения поля - значение свойства так же обновляеться.
@@ -20,10 +21,12 @@ export class TodoFormComponent {
      *  напр: [(ngModel)]="" - с пом. кот. осуществляеться привязка данных
      */
     title: string = '';
-    @Output() add = new EventEmitter();
+
+    // dependency injection
+    constructor(private todoService: TodoService) {}
 
     onSubmit() {
-        this.add.emit(this.title);
+        this.todoService.createTodo(this.title);
     }
 
    /**

@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Todo } from '../shared/todo';
+import { TodoService } from '../shared/todo.service';
 
 @Component({
     moduleId: module.id,
@@ -8,14 +9,25 @@ import { Todo } from '../shared/todo';
     templateUrl:'todo-list.component.html', 
     styleUrls: ['todo-list.component.css']
 })
-export class TodoListComponent {
-    @Input() todos: Todo[];
+export class TodoListComponent implements OnInit {
+    todos: Todo[];
+
+    // dependency injection
+    constructor(private todoService: TodoService) {
+        this.todos = [];
+    }
+
+    ngOnInit() {
+        //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+        //Add 'implements OnInit' to the class.
+        this.todos = this.todoService.getTodos();
+    }
 
     delete(todo: Todo) {
-        let index = this.todos.indexOf(todo);
+        this.todoService.deleteTodo(todo);
+    }
 
-        if (index > -1) {
-            this.todos.splice(index, 1);
-        }
+    toggle(todo: Todo) {
+        this.todoService.toggleTodo(todo);
     }
 }

@@ -73,6 +73,13 @@
  *  - удаление задач в компонете TodoList
  *  - и добавление в компонете App
  *  намного удобнее реализовать логику в одном месте -> service
+ * 
+ * ...
+ * 
+ * #10: Сервисы
+ *  Одним из вариантов разделения ответсвенности между различными частями приложения явл. сервисы
+ *      традиционно в сервисы помещаеться логика(т.е. непосредственная работа с данными приложения)
+ *    в Angular 2 за внешний вид отвечаеют компоненты а сервисы за работу с данными
  */
 import { Component } from "@angular/core";
 import { Todo } from "./shared/todo";
@@ -87,10 +94,4 @@ import { todos } from './shared/data';
 })
 export class AppComponent {
     title: string = 'Angular 2DO'; // таким образом, добавлять свойства классу можно только в TypeScript
-    todos: Todo[] = todos;
-
-    create(title: string) {
-        const todo = new Todo(title);
-        this.todos.push(todo);
-    }
 }

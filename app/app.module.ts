@@ -12,6 +12,8 @@ import { TodoFormComponent } from './todo-form/todo-form.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { TodoItemComponent } from './todo-item/todo-item.component';
 
+import { TodoService } from './shared/todo.service';
+
 /**
  * что бы указать Angular, что этот класс будет основным модулем приложения,
  *  нужно добавить 'анотоцию', анотации добавляются с помощью декораторов.
@@ -34,6 +36,8 @@ import { TodoItemComponent } from './todo-item/todo-item.component';
         TodoListComponent,
         TodoItemComponent
     ],
+    // регистрация сервиса в модуле приложения
+    providers: [TodoService],
     // для запуска приложения используеться AppComponent
     bootstrap: [AppComponent]
 })
