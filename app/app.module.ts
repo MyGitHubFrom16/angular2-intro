@@ -12,9 +12,10 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './shared/data.service';
 
 import { AppComponent } from './app.component';
-import { TodoFormComponent } from './todo-form/todo-form.component';
-import { TodoListComponent } from './todo-list/todo-list.component';
-import { TodoItemComponent } from './todo-item/todo-item.component';
+import { TodosComponent } from './todos/todos.component';
+import { TodoFormComponent } from './todos/todo-form/todo-form.component';
+import { TodoListComponent } from './todos/todo-list/todo-list.component';
+import { TodoItemComponent } from './todos/todo-item/todo-item.component';
 
 import { TodoService } from './shared/todo.service';
 
@@ -38,6 +39,7 @@ import { TodoService } from './shared/todo.service';
     // регистрация компонента в модуле приложения
     declarations: [
         AppComponent,
+        TodosComponent,
         TodoFormComponent,
         TodoListComponent,
         TodoItemComponent

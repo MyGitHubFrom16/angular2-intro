@@ -1,4 +1,4 @@
 <div class="todo-list" *ngIf="todos.length">
     <!-- Свойство 'todo' будет доступно в классе  компонента TodoItemComponent -->
-    <todo-item *ngFor="let todo of todos" [todo]="todo" (delete)="delete($event)" (toggle)="toggle($event)"></todo-item>
+    <todo-item *ngFor="let todo of todos" [todo]="todo" (delete)="onDelete($event)" (toggle)="onToggle($event)"></todo-item>
 </div>

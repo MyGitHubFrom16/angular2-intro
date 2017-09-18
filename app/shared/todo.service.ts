@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
-import 'rxjs/add/operator/toPromise';
+
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 
 import { Todo } from './todo';
 
@@ -14,62 +18,45 @@ import { Todo } from './todo';
 @Injectable()
 export class TodoService {
     private apiUrl: string = 'api/todos';
-    todos: Todo[] = [];
 
     constructor(private http: Http) {}
 
-    getTodos(): Promise<Todo[]> {
+    getTodos(): Observable<Todo[]> {
         return this.http.get(this.apiUrl)
-                        .toPromise()
-                        .then(response => response.json().data)
-                        .then(todos => this.todos = todos)
+                        .map(response => response.json().data)
                         .catch(this.handleError)
     }
 
-    createTodo(title: string) {
+    createTodo(title: string): Observable<Todo> {
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers});
         let todo = new Todo(title);
 
-        this.http.post(this.apiUrl, todo, options)
-                 .toPromise()
-                 .then(response => response.json().data)
-                 .then(todo => this.todos.push(todo))
-                 .catch(this.handleError);
+        return this.http.post(this.apiUrl, todo, options)
+                        .map(response => response.json().data)
+                        .catch(this.handleError);
     }
 
-    deleteTodo(todo: Todo) {
+    deleteTodo(todo: Todo): Observable<Todo> {
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers});
         let url = `${this.apiUrl}/${todo.id}`;
         
-        this.http.delete(url, options)
-                 .toPromise()
-                 .then(response => {
-                     let index = this.todos.indexOf(todo);
-
-                     if(index > -1) {
-                         this.todos.splice(index, 1);
-                     }
-                 })
-                 .catch(this.handleError);
+        return this.http.delete(url, options)
+                        .catch(this.handleError);
     }
 
-    toggleTodo(todo: Todo) {
+    toggleTodo(todo: Todo): Observable<Todo> {
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers});
         let url = `${this.apiUrl}/${todo.id}`;
         
-        this.http.delete(url, options)
-                 .toPromise()
-                 .then(response => {
-                    todo.completed = !todo.completed;
-                 })
-                 .catch(this.handleError);
+        return this.http.delete(url, options)
+                        .catch(this.handleError);
     }
 
-    private handleError(error: any) {
+    private handleError(error: any): Observable<Todo> {
         console.error(error);
-        return Promise.reject(error.message || error);
+        return Observable.throw(error.message || error);
     }
 }
